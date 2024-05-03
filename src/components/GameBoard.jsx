@@ -1,11 +1,9 @@
 import React from 'react'
-const initialGameBoard = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
-]
 
-const GameBoard = ({onSelectSquare}) => {
+
+const GameBoard = ({onSelectSquare, board}) => {
+
+
     // const [gameBoard, setGameBoard] = useState(initialGameBoard)
 
     // const handleSelectSquare = (rowIndex, colIndex) => {
@@ -20,9 +18,9 @@ const GameBoard = ({onSelectSquare}) => {
 
   return (
     <ol id="game-board">
-        {gameBoard.map((row, rowIndex) => <li key={rowIndex}>
+        {board.map((row, rowIndex) => <li key={rowIndex}>
              <ol>
-                {row.map((playerSymbol, colIndex)=> <li key={colIndex}><button onClick={onSelectSquare}>{playerSymbol}</button></li> )}
+                {row.map((playerSymbol, colIndex)=> <li key={colIndex}><button onClick={() => onSelectSquare(rowIndex, colIndex)} disabled={playerSymbol !== null}>{playerSymbol}</button></li> )}
              </ol>
         </li>)}
     </ol>
